@@ -6,7 +6,7 @@
 /*   By: juwkim <juwkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 13:59:42 by juwkim            #+#    #+#             */
-/*   Updated: 2023/08/30 14:45:21 by juwkim           ###   ########.fr       */
+/*   Updated: 2023/08/30 14:56:47 by juwkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ Array<T>::Array(const Array& array)
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& array)
 {
-	mSize = array.mSize;
-	delete[] mData;
-	mData = new T[mSize];
-	for (unsigned int i = 0, end = mSize; i < end; ++i)
-		mData[i] = array.mData[i];
+	this->~Array();
+	new (this) Array(array);
 	return *this;
 }
 
